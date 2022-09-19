@@ -6,8 +6,9 @@ fn main() {
     println!("Created a directory named 'Test'");
     check_if_path_exists("Test");
 
-    let copy_options = fs_extra::dir::CopyOptions::new();
-    fs_extra::dir::move_dir("Test", "test", &copy_options).unwrap();
+    let mut options = fs_extra::dir::CopyOptions::new();
+    options.copy_inside = true;
+    fs_extra::dir::move_dir("Test", "test", &options).unwrap();
 
     println!("Called fs_extra::dir::move_dir() to rename 'Test' to 'test'");
     check_if_path_exists("Test");
